@@ -43,7 +43,7 @@ class MoneyType extends AbstractType
      */
     public function getParent()
     {
-        return 'money';
+        return MoneyType::class;
     }
 
     /**
@@ -62,8 +62,13 @@ class MoneyType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'sylius_money';
+    }
+
+    public function getName()
+    {
+        return $this->getBlockPrefix();
     }
 }

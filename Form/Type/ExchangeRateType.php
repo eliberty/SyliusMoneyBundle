@@ -11,7 +11,9 @@
 
 namespace Sylius\Bundle\MoneyBundle\Form\Type;
 
+use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CurrencyType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -32,10 +34,10 @@ class ExchangeRateType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('currency', 'currency', array(
+            ->add('currency', CurrencyType::class, array(
                 'label' => 'sylius.form.exchange_rate.currency'
             ))
-            ->add('rate', 'text', array(
+            ->add('rate', TextType::class, array(
                 'label' => 'sylius.form.exchange_rate.rate'
             ))
         ;
@@ -53,8 +55,16 @@ class ExchangeRateType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'sylius_exchange_rate';
+    }
+
+    /**
+     * @return string
+     */
+    public function getBlock()
+    {
+        return $this->getBlockPrefix();
     }
 }
