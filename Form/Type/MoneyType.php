@@ -12,6 +12,7 @@
 namespace Sylius\Bundle\MoneyBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
@@ -43,7 +44,7 @@ class MoneyType extends AbstractType
      */
     public function getParent()
     {
-        return MoneyType::class;
+        return TextType::class;
     }
 
     /**
